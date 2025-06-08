@@ -3,6 +3,7 @@ module;
 #include <iostream>
 #include <map>
 #include <set>
+#include "utils/FeatureTest.h"
 
 export module Test;
 
