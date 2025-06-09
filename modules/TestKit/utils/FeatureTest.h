@@ -1,5 +1,5 @@
-// FeatureTest.h
-#pragma once
+#ifndef FEATURE_TEST_H
+#define FEATURE_TEST_H
 
 #include <functional>
 #include <string>
@@ -11,3 +11,5 @@ struct FeatureTest
   std::vector<std::string> testedFeatures;
   std::function<void()> testLogic;
 };
+
+#endif // FEATURE_TEST_H

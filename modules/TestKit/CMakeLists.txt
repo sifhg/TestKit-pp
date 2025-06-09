@@ -1,13 +1,13 @@
-cmake_minimum_required(VERSION 3.31)
-project(TestKit)
+include_directories(utils)
 
-add_library(
-    TestKit STATIC
+add_library(TestCompletion STATIC utils/TestCompletion.cpp)
+
+add_library(TestKit)
+target_sources(
+    TestKit
+    PUBLIC
+    FILE_SET CXX_MODULES FILES
     Test.cpp
-    utils/TestCompletion.cpp
 )
 
-target_include_directories(
-    TestKit PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/utils
-)
+target_link_libraries(TestKit TestCompletion)
