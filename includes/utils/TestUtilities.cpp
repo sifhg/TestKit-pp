@@ -32,12 +32,15 @@ bool TestUtilities::TryExecute(
 {
   try
   {
-    /* code */
+    auto executionTime = MeasureExecutionTime(a_action);
+    LogSuccess("Passed action: " + a_actionDescription);
+    LogInfo("Execution time: " + std::to_string(executionTime.count()) + " ms");
+    return true;
   }
-  catch(const std::exception& e)
+  catch(const std::exception& ex)
   {
-    std::cerr << e.what() << '\n';
+    LogWarning(ex.what());
+    LogError("Failed action: " + a_actionDescription);
+    return false;
   }
-  
-  return true;
 }
