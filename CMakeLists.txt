@@ -7,6 +7,7 @@ include_directories(includes/utils)
 add_executable(test_executable test_executable/main.cpp)
 
 add_library(Test STATIC includes/Test.cpp)
-target_link_libraries(test_executable Test)
 
-target_link_libraries(test_executable Test)
+add_library(TestUtilities STATIC includes/utils/TestUtilities.cpp)
+
+target_link_libraries(test_executable Test TestUtilities)
