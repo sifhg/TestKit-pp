@@ -4,10 +4,13 @@
 #include <iostream>
 
 void TestUtilities::LogInfo(const std::string &a_message) {
-    std::cout << "\033[1;36m" << a_message << "\033[0m" << std::endl;
+  std::cout << "\033[1;36m" << a_message << "\033[0m" << std::endl;
 }
 void TestUtilities::LogSuccess(const std::string &a_message) {
-    std::cout << "\033[1;32m" << a_message << "\033[0m" << std::endl;
+  std::cout << "\033[1;32m" << a_message << "\033[0m" << std::endl;
+}
+void TestUtilities::LogWarning(const std::string &a_message) {
+  std::cout << "\033[1;33m" << a_message << "\033[0m" << std::endl;
 }
 
 std::chrono::duration<double, std::milli> TestUtilities::MeasureExecutionTime(
