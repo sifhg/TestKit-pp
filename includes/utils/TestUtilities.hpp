@@ -8,6 +8,7 @@ class TestUtilities
 {
 public:
   static void LogInfo(const std::string &a_message);
+  static void LogSuccess(const std::string &a_message);
   static std::chrono::duration<double, std::milli> MeasureExecutionTime(
     const std::function<void()> &a_action
   );
