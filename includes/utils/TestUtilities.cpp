@@ -3,6 +3,9 @@
 #include <functional>
 #include <iostream>
 
+void TestUtilities::LogError(const std::string &a_message) {
+  std::cout << "\033[1;31m" << a_message << "\033[0m" << std::endl;
+}
 void TestUtilities::LogInfo(const std::string &a_message) {
   std::cout << "\033[1;36m" << a_message << "\033[0m" << std::endl;
 }

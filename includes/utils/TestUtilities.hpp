@@ -7,6 +7,7 @@
 class TestUtilities
 {
 public:
+  static void LogError(const std::string &a_message);
   static void LogInfo(const std::string &a_message);
   static void LogSuccess(const std::string &a_message);
   static void LogWarning(const std::string &a_message);
