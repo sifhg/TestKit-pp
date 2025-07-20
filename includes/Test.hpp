@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <list>
 #include <functional>
 #include <map>
@@ -12,7 +13,7 @@ class Test
 {
 public:
   explicit Test(std::string a_name);
-  Test(std::string a_name, const std::list<std::string> &a_features);
+  Test(std::string a_name, const std::vector<std::string> &a_features);
   ~Test();
   Test &AddFeature(const std::string &a_feature);
   void AddFeatureTest(const std::string &a_description,

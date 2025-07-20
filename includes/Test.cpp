@@ -1,9 +1,11 @@
 #include "Test.hpp"
 #include "utils/FeatureTest.hpp"
 #include "utils/TestCompletion.hpp"
+#include "utils/TestUtilities.hpp"
 
 #include <string>
 #include <map>
+#include <stdexcept>
 
 
 Test::Test(std::string a_name)
@@ -12,16 +14,28 @@ Test::Test(std::string a_name)
   m_testCompletions = { };
   m_featureTests = { };
 }
+Test::Test(std::string a_name, const std::vector<std::string> &a_features)
+  : Test(a_name)
+{
+  for (const std::string& feature : a_features) {
+    AddFeature(feature);
+  }
+}
 Test::~Test() = default;
 
 Test& Test::AddFeature(const std::string &a_feature)
 {
   if (m_testCompletions.contains(a_feature))
   {
-
+    throw std::runtime_error("Cannot add feature that already exists: " + a_feature);
   }
   m_testCompletions[a_feature] = TestCompletion{0, 0};
   return *this;
+}
+
+void Test::Run() const
+{
+  TestUtilities::LogInfo("\nRunning " + m_name);
 }
 
 std::string Test::to_string() const
