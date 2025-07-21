@@ -4,6 +4,7 @@
 #include "utils/TestUtilities.hpp"
 
 #include <map>
+#include <ranges>
 #include <stdexcept>
 #include <string>
 
@@ -34,7 +35,47 @@ Test &Test::AddFeature(const std::string &a_feature)
   return *this;
 }
 
-void Test::Run() const { TestUtilities::LogInfo("\nRunning " + m_name); }
+void Test::Run() const
+{
+  TestUtilities::LogInfo("\nRunning " + m_name);
+  for (const auto &featureTest: m_featureTests)
+  {
+    if (TestUtilities::TryExecute(featureTest.description, featureTest.testLogic))
+    {
+      for (const std::string &feature: featureTest.testedFeatures)
+      {
+        auto iterator = m_testCompletions.find(feature)->second;
+        iterator.Pass();
+      }
+    }
+    else
+    {
+      for (const std::string &feature: featureTest.testedFeatures)
+      {
+        auto iterator = m_testCompletions.find(feature)->second;
+        iterator.Fail();
+      }
+    }
+  }
+
+  for (const std::string &feature: m_testCompletions | std::views::keys)
+  {
+    TestUtilities::LogDefault("\nTests of " + feature + ":");
+    std::string evaluation = m_testCompletions.at(feature).EvaluateTest();
+    if (m_testCompletions.at(feature).DidAllTestsPass())
+    {
+      TestUtilities::LogSuccess(evaluation);
+    }
+    else if (m_testCompletions.at(feature).DidAnyTestPass())
+    {
+      TestUtilities::LogWarning(evaluation);
+    }
+    else
+    {
+      TestUtilities::LogError(evaluation);
+    }
+  }
+}
 
 std::string Test::to_string() const
 {
