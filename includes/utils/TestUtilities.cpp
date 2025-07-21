@@ -3,41 +3,43 @@
 #include <functional>
 #include <iostream>
 
-void TestUtilities::LogError(const std::string &a_message) {
+void TestUtilities::LogError(const std::string &a_message)
+{
   std::cout << "\033[1;31m" << a_message << "\033[0m" << std::endl;
 }
-void TestUtilities::LogInfo(const std::string &a_message) {
+void TestUtilities::LogInfo(const std::string &a_message)
+{
   std::cout << "\033[1;36m" << a_message << "\033[0m" << std::endl;
 }
-void TestUtilities::LogSuccess(const std::string &a_message) {
+void TestUtilities::LogSuccess(const std::string &a_message)
+{
   std::cout << "\033[1;32m" << a_message << "\033[0m" << std::endl;
 }
-void TestUtilities::LogWarning(const std::string &a_message) {
+void TestUtilities::LogWarning(const std::string &a_message)
+{
   std::cout << "\033[1;33m" << a_message << "\033[0m" << std::endl;
 }
 
-std::chrono::duration<double, std::milli> TestUtilities::MeasureExecutionTime(
-  const std::function<void()> &a_action
-)
+std::chrono::duration<double, std::milli>
+TestUtilities::MeasureExecutionTime(const std::function<void()> &a_action)
 {
-  auto start = std::chrono::high_resolution_clock::now();
+  const auto start = std::chrono::high_resolution_clock::now();
   a_action();
-  auto end = std::chrono::high_resolution_clock::now();
-  return std::chrono::duration<double, std::milli>(end - start);
+  const auto end = std::chrono::high_resolution_clock::now();
+  return auto(end - start);
 }
 
-bool TestUtilities::TryExecute(
-  const std::string &a_actionDescription,
-  const std::function<void()> &a_action)
+bool TestUtilities::TryExecute(const std::string &a_actionDescription,
+                               const std::function<void()> &a_action)
 {
   try
   {
-    auto executionTime = MeasureExecutionTime(a_action);
+    const auto executionTime = MeasureExecutionTime(a_action);
     LogSuccess("Passed action: " + a_actionDescription);
     LogInfo("Execution time: " + std::to_string(executionTime.count()) + " ms");
     return true;
   }
-  catch(const std::exception& ex)
+  catch (const std::exception &ex)
   {
     LogWarning(ex.what());
     LogError("Failed action: " + a_actionDescription);
