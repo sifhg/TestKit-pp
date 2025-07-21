@@ -35,6 +35,21 @@ Test &Test::AddFeature(const std::string &a_feature)
   return *this;
 }
 
+void Test::AddFeatureTest(const std::string &a_description,
+                          const std::vector<std::string> &a_testedFeatures,
+                          const std::function<void()> &a_testLogic)
+{
+  for (const std::string &feature: a_testedFeatures)
+  {
+    if (!m_testCompletions.contains(feature))
+    {
+      AddFeature(feature);
+    }
+  }
+  m_featureTests.push_back(FeatureTest{a_description, a_testedFeatures, a_testLogic});
+}
+
+
 void Test::Run() const
 {
   TestUtilities::LogInfo("\nRunning " + m_name);
