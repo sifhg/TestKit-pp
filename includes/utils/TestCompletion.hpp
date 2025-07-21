@@ -4,14 +4,14 @@
 
 struct TestCompletion
 {
-  unsigned short totalTests;
-  unsigned short passedTests;
-  void Pass()
+  mutable unsigned short totalTests;
+  mutable unsigned short passedTests;
+  void Pass() const
   {
-    totalTests++;
-    passedTests++;
+    this->totalTests++;
+    this->passedTests++;
   }
-  void Fail() { totalTests++; }
+  void Fail() const { this->totalTests++; }
   [[nodiscard]] std::string EvaluateTest() const
   {
     if (totalTests == 0)

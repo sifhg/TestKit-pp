@@ -59,16 +59,14 @@ void Test::Run() const
     {
       for (const std::string &feature: featureTest.testedFeatures)
       {
-        auto iterator = m_testCompletions.find(feature)->second;
-        iterator.Pass();
+        m_testCompletions.at(feature).Pass();
       }
     }
     else
     {
       for (const std::string &feature: featureTest.testedFeatures)
       {
-        auto iterator = m_testCompletions.find(feature)->second;
-        iterator.Fail();
+        m_testCompletions.at(feature).Fail();
       }
     }
   }
