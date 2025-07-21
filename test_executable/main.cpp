@@ -3,10 +3,17 @@
 
 int main()
 {
-  Test aTest = Test("I'm a test", {"one", "two", "three"});
-  std::cout << aTest.to_string() << ".\n";
-  aTest.AddFeature("Two").AddFeature("Three");
-  std::cout << aTest.to_string() << ".\n";
-  aTest.Run();
+  auto testSuite = Test("MyFeatureTests");
+  testSuite.AddFeature("FeatureA").AddFeature("FeatureB");
+
+  testSuite.AddFeatureTest("Test FeatureA functionality", {"FeatureA"},
+                           []
+                           {
+                             auto a = 2;
+                             auto b = 3;
+                             auto c = a / b;
+                           });
+
+  testSuite.Run();
   return 0;
 }
