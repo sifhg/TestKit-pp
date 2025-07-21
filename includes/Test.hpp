@@ -1,7 +1,6 @@
 #pragma once
 
 #include <functional>
-#include <list>
 #include <map>
 #include <string>
 #include <vector>
@@ -16,9 +15,9 @@ public:
   Test(const std::string &a_name, const std::vector<std::string> &a_features);
   ~Test();
   Test &AddFeature(const std::string &a_feature);
-  // void AddFeatureTest(const std::string &a_description,
-  //                     const std::list<std::string> &a_testedFeatures,
-  //                     const std::function<void()> &a_testLogic);
+  void AddFeatureTest(const std::string &a_description,
+                      const std::vector<std::string> &a_testedFeatures,
+                      const std::function<void()> &a_testLogic);
 
   void Run() const;
   [[nodiscard]] std::string to_string() const;
