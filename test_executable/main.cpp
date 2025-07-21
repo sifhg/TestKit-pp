@@ -3,7 +3,7 @@
 
 int main()
 {
-  auto aTest = Test("I'm a test", {"one", "two", "three"});
+  Test aTest = Test("I'm a test", {"one", "two", "three"});
   std::cout << aTest.to_string() << ".\n";
   aTest.AddFeature("Two").AddFeature("Three");
   std::cout << aTest.to_string() << ".\n";
