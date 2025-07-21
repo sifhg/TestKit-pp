@@ -3,27 +3,28 @@
 #include "utils/TestCompletion.hpp"
 #include "utils/TestUtilities.hpp"
 
-#include <string>
 #include <map>
 #include <stdexcept>
+#include <string>
 
 
-Test::Test(std::string a_name)
+Test::Test(const std::string &a_name)
 {
   m_name = a_name;
-  m_testCompletions = { };
-  m_featureTests = { };
+  m_testCompletions = {};
+  m_featureTests = {};
 }
-Test::Test(std::string a_name, const std::vector<std::string> &a_features)
-  : Test(a_name)
+Test::Test(const std::string &a_name, const std::vector<std::string> &a_features)
+    : Test(a_name)
 {
-  for (const std::string& feature : a_features) {
+  for (const std::string &feature: a_features)
+  {
     AddFeature(feature);
   }
 }
 Test::~Test() = default;
 
-Test& Test::AddFeature(const std::string &a_feature)
+Test &Test::AddFeature(const std::string &a_feature)
 {
   if (m_testCompletions.contains(a_feature))
   {
@@ -33,14 +34,10 @@ Test& Test::AddFeature(const std::string &a_feature)
   return *this;
 }
 
-void Test::Run() const
-{
-  TestUtilities::LogInfo("\nRunning " + m_name);
-}
+void Test::Run() const { TestUtilities::LogInfo("\nRunning " + m_name); }
 
 std::string Test::to_string() const
 {
-  return "Name: " + m_name +
-    "; No. of feature tests: " + std::to_string(m_featureTests.size()) +
-    "; No. of features: " + std::to_string(m_testCompletions.size());
+  return "Name: " + m_name + "; No. of feature tests: " + std::to_string(m_featureTests.size()) +
+         "; No. of features: " + std::to_string(m_testCompletions.size());
 }
