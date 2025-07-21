@@ -26,7 +26,7 @@ TestUtilities::MeasureExecutionTime(const std::function<void()> &a_action)
   const auto start = std::chrono::high_resolution_clock::now();
   a_action();
   const auto end = std::chrono::high_resolution_clock::now();
-  return auto(end - start);
+  return end - start;
 }
 
 bool TestUtilities::TryExecute(const std::string &a_actionDescription,
