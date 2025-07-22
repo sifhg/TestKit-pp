@@ -22,7 +22,7 @@ struct TestCompletion
     percentageStream << std::fixed << std::setprecision(2)
                      << static_cast<float>(passedTests) / static_cast<float>(totalTests) * 100;
 
-    return percentageStream.str() + "\n" + std::to_string(passedTests) + " out of " +
+    return percentageStream.str() + "%\n" + std::to_string(passedTests) + " out of " +
            std::to_string(totalTests) + " tests passed";
   }
   [[nodiscard]] bool DidAllTestsPass() const
