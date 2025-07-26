@@ -9,7 +9,7 @@ To install TestKit-pp, follow these steps:
 2. Add the TestKit directory to your `CMakeLists.txt` file:
 
 ```cmake
-add_subdirectory(TestKit)
+add_subdirectory(path/to/TestKit-pp)
 ```
 
 3. Link the library to your project:
@@ -20,5 +20,5 @@ target_link_libraries([your_project_name] TestKit)
 
 4. Include the TestKit header in your project:
 ```c++
-#include "include/TestKit/Test.hpp"
+#include "path/to/TestKit-pp/Test.hpp"
 ```
