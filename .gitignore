@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 build/
+test_executable/
 
 # Prerequisites
 *.d
