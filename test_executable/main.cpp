@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../includes/Test.hpp"
+#include "../include/TestKit/Test.hpp"
 
 int main()
 {
